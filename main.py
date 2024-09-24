@@ -225,7 +225,6 @@ def login():
             flash(_('Пользователь не найден.'), 'danger')
     return render_template('login.html', form=form)
 
-# Удален маршрут /register
 # Удалены связанные формы и модели
 
 @app.route('/profile')
