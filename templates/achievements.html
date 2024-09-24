@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Достижения - XTR Auction{% endblock %}
+
+{% block content %}
+<h2>Достижения</h2>
+<div class="row">
+    {% for achievement in achievements %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ achievement.name }}</h5>
+                    <p class="card-text">{{ achievement.description }}</p>
+                    {% if achievement.id in user_achievements %}
+                        <span class="badge bg-success">Достигнуто</span>
+                    {% else %}
+                        <span class="badge bg-secondary">Не достигнуто</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

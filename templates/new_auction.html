@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Создать аукцион - XTR Auction{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-4">Создание нового аукциона</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+                {{ form.title.label(class="form-label") }}
+                {{ form.title(class="form-control", placeholder="Введите название аукциона") }}
+                {% for error in form.title.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="mb-3">
+                {{ form.description.label(class="form-label") }}
+                {{ form.description(class="form-control", placeholder="Введите описание аукциона") }}
+                {% for error in form.description.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="mb-3">
+                {{ form.image.label(class="form-label") }}
+                {{ form.image(class="form-control") }}
+                {% for error in form.image.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="mb-3">
+                {{ form.starting_price.label(class="form-label") }}
+                {{ form.starting_price(class="form-control", placeholder="Введите стартовую цену (руб.)") }}
+                {% for error in form.starting_price.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="mb-3">
+                {{ form.duration.label(class="form-label") }}
+                {{ form.duration(class="form-select") }}
+                {% for error in form.duration.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="mb-3">
+                {{ form.auction_type.label(class="form-label") }}
+                {{ form.auction_type(class="form-select") }}
+                {% for error in form.auction_type.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-success">{{ form.submit.label }}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

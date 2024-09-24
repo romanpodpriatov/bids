@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - XTR Auction{% endblock %}
+
+{% block content %}
+<h2>Активные аукционы</h2>
+<div class="row">
+    {% for auction in auctions %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                {% if auction.image_filename %}
+                    <img src="{{ url_for('static', filename='uploads/' + auction.image_filename) }}" class="card-img-top" alt="{{ auction.title }}">
+                {% else %}
+                    <img src="{{ url_for('static', filename='uploads/default.jpg') }}" class="card-img-top" alt="Без изображения">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ auction.title }}</h5>
+                    <p class="card-text">{{ auction.description }}</p>
+                    <p class="card-text"><strong>Текущая цена:</strong> {{ auction.current_price }} руб.</p>
+                    <a href="{{ url_for('auction_detail', uuid=auction.uuid) }}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

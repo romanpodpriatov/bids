@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Список наблюдения - XTR Auction{% endblock %}
+
+{% block content %}
+<h2>Список наблюдения</h2>
+<div class="row">
+    {% for item in items %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                {% if item.auction.image_filename %}
+                    <img src="{{ url_for('static', filename='uploads/' + item.auction.image_filename) }}" class="card-img-top" alt="{{ item.auction.title }}">
+                {% else %}
+                    <img src="{{ url_for('static', filename='uploads/default.jpg') }}" class="card-img-top" alt="Без изображения">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.auction.title }}</h5>
+                    <p class="card-text">{{ item.auction.description }}</p>
+                    <p class="card-text"><strong>Текущая цена:</strong> {{ item.auction.current_price }} руб.</p>
+                    <a href="{{ url_for('auction_detail', uuid=item.auction.uuid) }}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p>Ваш список наблюдения пуст.</p>
+    {% endfor %}
+</div>
+{% endblock %}

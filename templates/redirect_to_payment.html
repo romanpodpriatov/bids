@@ -1,0 +1,25 @@
+<!-- templates/redirect_to_payment.html -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Перенаправление на оплату</title>
+</head>
+<body>
+    <p>Вы перенаправляетесь на страницу оплаты...</p>
+    <form id="paymentForm" action="{{ payment_url }}" method="post">
+        {% for key, value in params.items() %}
+            <input type="hidden" name="{{ key }}" value="{{ value }}">
+            <!-- Выводим параметры для отладки -->
+            <p>{{ key }}: {{ value }}</p>
+        {% endfor %}
+        <!-- Добавляем кнопку для ручной отправки формы -->
+        <button type="submit">Перейти к оплате</button>
+    </form>
+    <!-- Отключаем автоматическое отправление формы для отладки -->
+    <!-- <script type="text/javascript">
+        document.getElementById('paymentForm').submit();
+    </script> -->
+</body>
+</html>

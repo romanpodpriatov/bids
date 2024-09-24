@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{ _('Регистрация') }}{% endblock %}
+{% block content %}
+<h1>{{ _('Регистрация') }}</h1>
+<form method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.telegram_id.label }}<br>
+        {{ form.telegram_id(size=32) }}
+    </p>
+    <p>
+        {{ form.username.label }}<br>
+        {{ form.username(size=32) }}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}

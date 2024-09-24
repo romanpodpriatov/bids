@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Админка - XTR Auction{% endblock %}
+
+{% block content %}
+<h2>Административная панель</h2>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Пользователи</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ total_users }}</h5>
+                <p class="card-text">Всего пользователей</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">Активные аукционы</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ active_auctions }}</h5>
+                <p class="card-text">Текущих аукционов</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-header">Завершённые аукционы</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ completed_auctions }}</h5>
+                <p class="card-text">Завершённых аукционов</p>
+            </div>
+        </div>
+    </div>
+    <!-- Если модель Payment больше не используется, удалите этот блок -->
+    <div class="col-md-3">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-header">Общая сумма платежей</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ total_payments }} руб.</h5>
+                <p class="card-text">Всего получено</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>Список пользователей</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Telegram ID</th>
+            <th>Имя пользователя</th>
+            <th>Админ</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.telegram_id }}</td>
+                <td>{{ user.username }}</td>
+                <td>
+                    {% if user.is_admin %}
+                        <span class="badge bg-success">Да</span>
+                    {% else %}
+                        <span class="badge bg-secondary">Нет</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <!-- Добавьте действия, если необходимо -->
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
